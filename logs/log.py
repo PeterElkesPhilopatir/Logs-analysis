@@ -1,8 +1,7 @@
 from flask import Flask
+import logdb
 
 app = Flask(__name__)
-
-import logdb
 
 
 def most3articles():
@@ -21,17 +20,6 @@ def errors_day():
     for date, percentage in logdb.get_date_errors():
         print(date)
         print(percentage)
-
-
-# @app.route('/', methods=['GET'])
-# def errors_day():
-#     day_with_errors = '''\
-#         <h3>Days with errors greater than 1 percentage</h3>
-#         <div class=post><em class=date>%s</em><br>%s</div>
-#     '''
-#     errors_days = "".join(day_with_errors % (date, percentage) for date, percentage in logdb.get_date_errors())
-#     html = HTML_WRAP % errors_days
-#     return html
 
 
 if __name__ == '__main__':
