@@ -6,14 +6,12 @@ Steps to run it:
 3 : run "vagrant up" and wait for download to finish 
 4 : then run "vagrant ssh" 
 5 : install psql in your virtual machine run this command "sudo apt-get install postgresql" 
-6 : run "psql" command 
-7 : create database with command "CREATE DATABASE NAME" 
-8 : run command "psql DATABASE NAME" 
-9 : create tables "CREATE TABLE NAME" 
-10 : "\q" to quit 
-11 : go to root "cd /" 
-12 : change directory to vagrant "cd /vagrant" 
-13 : change directory to tournament "cd logsanalysis" 
-14 : change directory to logs "cd logs"
-15 : run file log.py "python log.py" command
+6 : run "psql" command  
+7 : "\q" to quit 
+8 : go to root "cd /" 
+9 : change directory to vagrant "cd /vagrant" 
+10 : change directory to tournament "cd logsanalysis" 
+11 : change directory to logs "cd logs"
+12 : run file log.py "python log.py" command
+13 : PLEASE NOTE COLUMN "VIEWS" ADDED TO TABLE "ARTICLES"
 ///////// ENJOY //////////
