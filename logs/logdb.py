@@ -8,8 +8,22 @@ def get_most_popular3_articles():
     # Return the most 3 articles from the 'database'
     db = psycopg2.connect(database=DBNAME)
     c = db.cursor()
-    c.execute("select title,views from articles "
-              "order by (views) desc limit 3;")
+
+    # First Method
+    # c.execute("select title,views from articles "
+    #           "order by (views) desc limit 3;")
+
+    # Second method with no change in database
+    c.execute(
+        "select articles.title as title,count (*) as views "
+        "from "
+        "articles join log on log.path "
+        "like "
+        "concat('%',articles.slug,'%') "
+        "group by "
+        "title order by views desc"
+        " limit 3;")
+
     data = c.fetchall()
     db.close()
     return data
@@ -19,10 +33,23 @@ def get_most_popular_article_authors():
     # Return the most 3 article authors from the 'database'
     db = psycopg2.connect(database=DBNAME)
     c = db.cursor()
+
+    # First method
     c.execute(
         "select authors.name as name, sum (views) from authors "
         "join articles on authors.id = articles.author "
         "group by (name) order by (sum) desc;")
+
+    # Second Method with no change in database
+    c.execute("select authors.name as name ,count (*) as views"
+              " from articles "
+              "join"
+              " authors on articles.author = authors.id "
+              "join "
+              "log on log.path "
+              "like concat ('%',articles.slug,'%')"
+              " group by name "
+              "order by views desc;")
     data = c.fetchall()
     db.close()
     return data
